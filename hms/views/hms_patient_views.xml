@@ -1,0 +1,85 @@
+<odoo>
+    <data>
+
+        <!-- Action for Patient Data -->
+        <record id="hms_patient_action" model="ir.actions.act_window">
+            <field name="name">Patient Data</field>
+            <field name="res_model">hms.patient</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+        <!-- Form View for Patient -->
+        <record id="view_hms_patient_form" model="ir.ui.view">
+            <field name="name">hms.patient.form</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <!-- Header Section -->
+                    <header>
+                        <div class="oe_slogan">
+                            <h1>Patient Information Form</h1>
+                        </div>
+                    </header>
+
+
+                    <!-- Sheet Section -->
+                    <sheet>
+                        <notebook>
+                            <!-- General Information Group -->
+                            <page string="General Information">
+
+
+                                <group>
+                                    <field name="first_name"/>
+                                    <field name="last_name"/>
+                                    <field name="birth_date"/>
+                                    <field name="age"/>
+                                    <field name="image"/>
+                                    <field name="address"/>
+                                    <field name="email"/>
+                                </group>
+                            </page>
+
+                            <!-- Medical Information Group -->
+                            <page string='Medical Information'>
+                                <group>
+                                    <field name="blood_type"/>
+                                    <field name="cr_ratio"/>
+                                    <field name="pcr"/>
+                                    <field name="history" attrs="{'invisible': [('age', '&lt;', 50)]}"/>
+                                    <field name="state"/>
+                                    <field name="department_id"/>
+                                    <field name="doctor_ids"/>
+                                    <field name="department_capacity"/>
+                                    <field name="logs"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Tree View for Patients -->
+        <record id="view_hms_patient_tree" model="ir.ui.view">
+            <field name="name">hms.patient.tree</field>
+            <field name="model">hms.patient</field>
+            <field name="arch" type="xml">
+                <tree string="Patients">
+                    <field name="first_name"/>
+                    <field name="last_name"/>
+                    <field name="birth_date"/>
+                    <field name="blood_type"/>
+                    <field name="age"/>
+                    <field name="department_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- HMS Menu and Patient Submenu -->
+        <menuitem id="hms_menu" name="Hospital Management System"/>
+        <menuitem id="hms_patient_menu" parent="hms_menu" name="Patients" action="hms_patient_action" sequence="1"/>
+
+    </data>
+</odoo>

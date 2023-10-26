@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+
+        <record id = 'hms_doctors_action' model ='ir.actions.act_window'>
+            <field name="name">Doctors Data</field>
+            <field name="res_model">hms.doctors</field>
+            <field name="view_mode">tree,form,kanban</field>
+        </record>
+
+
+        <menuitem id ='hms_doctors_menu' parent="hms_menu" name="Doctors" action="hms_doctors_action" sequence="3"/>
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+managers_student_permissions_id,managers_student_permissions_name,model_iti_student,iti_managers,1,1,1,1
+employees_student_permissions_id,employees_student_permissions_name,model_iti_student,iti_users,1,1,1,1
+managers_student_log_permissions_id,managers_student_log_permissions_name,model_iti_student_level_log,iti_managers,1,1,1,1
+employees_student_log_permissions_id,employees_student_log_permissions_name,model_iti_student_level_log,iti_users,1,1,1,1
+managers_track_permissions_id,managers_track_permissions_name,model_iti_track,iti_managers,1,1,1,1
+employees_track_permissions_id,employees_track_permissions_name,model_iti_track,iti_users,1,0,0,0

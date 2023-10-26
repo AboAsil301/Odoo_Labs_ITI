@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+
+        <record id = 'iti_student_action' model = 'ir.actions.act_window'>
+            <field name ='name'>Students_Data</field>
+            <field name="res_model">iti.student</field>
+        </record>
+
+
+        <record id = 'iti_student_tree_view' model = 'ir.ui.view'>
+            <field name="name">ItI Student tree</field>
+            <field name="model">iti.student</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="salary"/>
+                    <field name = "gender"/>
+                </tree>
+            </field>
+        </record>
+
+
+
+        <record id="iti_student_form_view" model ='ir.ui.view'>
+            <field name="name" >student form view</field>
+            <field name="model">iti.student</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="set_working"  type="object"  string="working"/>
+                        <field name="level" widget="statusbar" nolabel="1" options="{'clickable':'1'}" groups="iti7.iti_managers"/>
+                    </header>
+                    <sheet>
+                        <notebook>
+                            <page string = 'General Information'>
+                        <group string="Student Information">
+                            <field name="name"/>
+                            <field name="age" required="1"/>
+                            <field name="birth_date"/>
+                            <field name="graduate_age"/>
+<!--                            <field name="level"/>  this was the problem for not having it as status bar -->
+                        </group>
+                            </page>
+                            <page string = 'Working Information'>
+                        <group string = "working Information">
+                            <field name="is_working" default = '1'/>
+                            <field name="cv" attrs="{
+                            'invisible' : [('is_working' ,'!=' , True)]}"/>
+                            <field name="salary" attrs="{
+                            'required' : [('is_working' ,'=' , True)]}" />
+                            <field name = "gender"/>
+                        </group>
+                            </page>
+                            <page string = 'Track Information'>
+                                <group string ="data">
+                                    <field name ="track_id" domain = "[('is_opened' ,'=' , True)]"/>
+                                    <field name="track_capacity"/>
+                                </group>
+                            </page>
+
+                            <page string="Level Logs" groups="iti7.iti_managers">
+                                <field name = 'level_logs'>
+                                    <tree>
+                                        <field name="create_uid"/>
+                                        <field name="description"/>
+                                        <field name="create_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <menuitem id = 'iti_root' name ='ITI'/>
+        <menuitem id = 'iti_student' name ='Students' parent="iti_root" action="iti_student_action" sequence = '2'/>
+    </data>
+</odoo>
